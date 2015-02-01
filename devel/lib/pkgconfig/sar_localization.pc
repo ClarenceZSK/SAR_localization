@@ -1,0 +1,8 @@
+prefix=/home/clarence/SAR_Localization/devel
+
+Name: sar_localization
+Description: Description of sar_localization
+Version: 0.0.0
+Cflags: -I/home/clarence/SAR_Localization/devel/include
+Libs: -L/home/clarence/SAR_Localization/devel/lib 
+Requires: roscpp rospy std_msgs message_runtime
