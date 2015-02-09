@@ -3,6 +3,7 @@
 /home/clarence/SAR_Localization/build/gtest/CMakeFiles/gtest.dir
 /home/clarence/SAR_Localization/build/gtest/CMakeFiles/gtest_main.dir
 /home/clarence/SAR_Localization/build/sar_localization/CMakeFiles/listener.dir
+/home/clarence/SAR_Localization/build/sar_localization/CMakeFiles/log_csi_stream.dir
 /home/clarence/SAR_Localization/build/sar_localization/CMakeFiles/roscpp_generate_messages_cpp.dir
 /home/clarence/SAR_Localization/build/sar_localization/CMakeFiles/roscpp_generate_messages_lisp.dir
 /home/clarence/SAR_Localization/build/sar_localization/CMakeFiles/roscpp_generate_messages_py.dir

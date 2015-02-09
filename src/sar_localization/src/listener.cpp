@@ -4,61 +4,47 @@
 #include "std_msgs/Float32.h"
 #include "std_msgs/Header.h"
 #include "sar_localization/Imu.h"
-/**
- * This tutorial demonstrates simple receipt of messages over the ROS system.
- */
+#include "sar_localization/Csi.h"
+
+#include "/opt/eigen/Eigen/Eigen"
+#include <vector>
+#include <complex>
+//Global variables for data processing
+#define PI 3.1415926
+
+using namespace std;
+
+vector<complex> CSI1;		//CSI from antenna 1
+vector<complex> CSI2;		//CSI from antenna 2
+vector<pair<double, double> > orientation;	//pitch, yaw
+double t_stamp_csi;			//time stamp of csi
+double t_stamp_imu;			//time stamp of imu
+int size = 100;					//data processing size
+
+
 // %Tag(CALLBACK)%
 void imuCallback(const sar_localization::Imu::ConstPtr& msg)
 {
-  ROS_INFO("[Seq:%d,time:%.3f,frame_id:%s]", msg->header.seq, msg->header.stamp.toNSec()*1e-6, msg->header.frame_id.c_str() );
+ 	ROS_INFO("[Seq:%d,time:%.3f,frame_id:%s]", msg->header.seq, msg->header.stamp.toNSec()*1e-6, msg->header.frame_id.c_str() );
+}
+
+void csiCallback(const sar_localization::Csi::ConstPtr& msg)
+{
+	ROS_INFO("[Seq:%d,time:%.3f,csi1:%.3f %.3fi,csi2:%.3f %.3fi]", msg->header.seq, msg->header.stamp.toNSec()*1e-6, msg->csi1_real, msg->csi1_image, msg->csi2_real, msg->csi2_image);
 }
 // %EndTag(CALLBACK)%
 
 int main(int argc, char **argv)
 {
-  /**
-   * The ros::init() function needs to see argc and argv so that it can perform
-   * any ROS arguments and name remapping that were provided at the command line. For programmatic
-   * remappings you can use a different version of init() which takes remappings
-   * directly, but for most command-line programs, passing argc and argv is the easiest
-   * way to do it.  The third argument to init() is the name of the node.
-   *
-   * You must call one of the versions of ros::init() before using any other
-   * part of the ROS system.
-   */
   ros::init(argc, argv, "listener");
 
-  /**
-   * NodeHandle is the main access point to communications with the ROS system.
-   * The first NodeHandle constructed will fully initialize this node, and the last
-   * NodeHandle destructed will close down the node.
-   */
   ros::NodeHandle n;
 
-  /**
-   * The subscribe() call is how you tell ROS that you want to receive messages
-   * on a given topic.  This invokes a call to the ROS
-   * master node, which keeps a registry of who is publishing and who
-   * is subscribing.  Messages are passed to a callback function, here
-   * called chatterCallback.  subscribe() returns a Subscriber object that you
-   * must hold on to until you want to unsubscribe.  When all copies of the Subscriber
-   * object go out of scope, this callback will automatically be unsubscribed from
-   * this topic.
-   *
-   * The second parameter to the subscribe() function is the size of the message
-   * queue.  If messages are arriving faster than they are being processed, this
-   * is the number of messages that will be buffered up before beginning to throw
-   * away the oldest ones.
-   */
 // %Tag(SUBSCRIBER)%
-  ros::Subscriber sub = n.subscribe("imu", 1000, imuCallback);
+  ros::Subscriber sub1 = n.subscribe("imu_csi", 1000, imuCallback);
+	ros::Subscriber sub2 = n.subscribe("imu_csi", 1000, csiCallback);
 // %EndTag(SUBSCRIBER)%
 
-  /**
-   * ros::spin() will enter a loop, pumping callbacks.  With this version, all
-   * callbacks will be called from within this thread (the main one).  ros::spin()
-   * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
-   */
 // %Tag(SPIN)%
   ros::spin();
 // %EndTag(SPIN)%

@@ -12,6 +12,7 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 SET(CMAKE_C_INCLUDE_PATH
   "/home/clarence/SAR_Localization/devel/include"
   "/opt/ros/hydro/include"
+  "/usr/local/include/eigen3"
   "/home/clarence/SAR_Localization/src/sar_localization/include"
   )
 SET(CMAKE_CXX_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})

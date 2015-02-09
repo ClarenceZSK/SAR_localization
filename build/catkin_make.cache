@@ -1,1 +1,2 @@
 sar_localization
+-DCATKIN_DEVEL_PREFIX=/home/clarence/SAR_Localization/devel -DCMAKE_INSTALL_PREFIX=/home/clarence/SAR_Localization/install

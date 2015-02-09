@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/clarence/SAR_Localization/src/sar_localization/msg/Imu.msg"
+messages_str = "/home/clarence/SAR_Localization/src/sar_localization/msg/Imu.msg;/home/clarence/SAR_Localization/src/sar_localization/msg/Csi.msg"
 services_str = ""
 pkg_name = "sar_localization"
 dependencies_str = "std_msgs"

@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 	/*init ros*/
 	ros::init(argc, argv, "csi_publisher");
 	ros::NodeHandle handle;
-	csi_pub = handle.advertise<sar_localization::Csi>("csi", 1000);
+	csi_pub = handle.advertise<sar_localization::Csi>("imu_csi", 1000);
 	ros::Rate listen_rate(100);
 	/* Local variables */
 	struct sockaddr_nl proc_addr, kern_addr;	// addrs for recv, send, bind

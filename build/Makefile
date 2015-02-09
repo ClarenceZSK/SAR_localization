@@ -238,6 +238,19 @@ listener/fast:
 .PHONY : listener/fast
 
 #=============================================================================
+# Target rules for targets named log_csi_stream
+
+# Build rule for target.
+log_csi_stream: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 log_csi_stream
+.PHONY : log_csi_stream
+
+# fast build rule for target.
+log_csi_stream/fast:
+	$(MAKE) -f sar_localization/CMakeFiles/log_csi_stream.dir/build.make sar_localization/CMakeFiles/log_csi_stream.dir/build
+.PHONY : log_csi_stream/fast
+
+#=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
 
 # Build rule for target.
@@ -478,6 +491,7 @@ help:
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... listener"
+	@echo "... log_csi_stream"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"

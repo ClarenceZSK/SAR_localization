@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "sar_localization: 1 messages, 0 services")
+message(STATUS "sar_localization: 2 messages, 0 services")
 
 set(MSG_I_FLAGS "-Isar_localization:/home/clarence/SAR_Localization/src/sar_localization/msg;-Istd_msgs:/opt/ros/hydro/share/std_msgs/cmake/../msg")
 
@@ -20,7 +20,13 @@ add_custom_target(sar_localization_generate_messages ALL)
 _generate_msg_cpp(sar_localization
   "/home/clarence/SAR_Localization/src/sar_localization/msg/Imu.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/sar_localization
+)
+_generate_msg_cpp(sar_localization
+  "/home/clarence/SAR_Localization/src/sar_localization/msg/Csi.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/sar_localization
 )
 
@@ -49,7 +55,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS sar_localization_generate_messages_
 _generate_msg_lisp(sar_localization
   "/home/clarence/SAR_Localization/src/sar_localization/msg/Imu.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/sar_localization
+)
+_generate_msg_lisp(sar_localization
+  "/home/clarence/SAR_Localization/src/sar_localization/msg/Csi.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/sar_localization
 )
 
@@ -78,7 +90,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS sar_localization_generate_messages_
 _generate_msg_py(sar_localization
   "/home/clarence/SAR_Localization/src/sar_localization/msg/Imu.msg"
   "${MSG_I_FLAGS}"
-  ""
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/sar_localization
+)
+_generate_msg_py(sar_localization
+  "/home/clarence/SAR_Localization/src/sar_localization/msg/Csi.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/hydro/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/sar_localization
 )
 

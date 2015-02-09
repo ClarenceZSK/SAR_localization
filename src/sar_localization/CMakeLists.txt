@@ -13,6 +13,8 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(Eigen REQUIRED)
+
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -48,7 +50,8 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    Imu.msg
-#   Message2.msg
+   #   Complex.msg
+   Csi.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -98,7 +101,7 @@ catkin_package(
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
-
+include_directories(${Eigen_INCLUDE_DIRS})
 ## Declare a cpp library
 # add_library(sar_localization
 #   src/${PROJECT_NAME}/sar_localization.cpp
@@ -173,3 +176,7 @@ add_dependencies(serial_message sar_localization_generate_messages_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener sar_localization_generate_messages_cpp)
+
+add_executable(log_csi_stream src/log_csi_stream.cpp)
+target_link_libraries(log_csi_stream ${catkin_LIBRARIES})
+add_dependencies(log_csi_stream sar_localization_generate_messages_cpp)

@@ -161,6 +161,20 @@ listener/fast:
 .PHONY : listener/fast
 
 # Convenience name for target.
+sar_localization/CMakeFiles/log_csi_stream.dir/rule:
+	cd /home/clarence/SAR_Localization/build && $(MAKE) -f CMakeFiles/Makefile2 sar_localization/CMakeFiles/log_csi_stream.dir/rule
+.PHONY : sar_localization/CMakeFiles/log_csi_stream.dir/rule
+
+# Convenience name for target.
+log_csi_stream: sar_localization/CMakeFiles/log_csi_stream.dir/rule
+.PHONY : log_csi_stream
+
+# fast build rule for target.
+log_csi_stream/fast:
+	cd /home/clarence/SAR_Localization/build && $(MAKE) -f sar_localization/CMakeFiles/log_csi_stream.dir/build.make sar_localization/CMakeFiles/log_csi_stream.dir/build
+.PHONY : log_csi_stream/fast
+
+# Convenience name for target.
 sar_localization/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
 	cd /home/clarence/SAR_Localization/build && $(MAKE) -f CMakeFiles/Makefile2 sar_localization/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 .PHONY : sar_localization/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
@@ -422,6 +436,30 @@ src/listener.cpp.s:
 	cd /home/clarence/SAR_Localization/build && $(MAKE) -f sar_localization/CMakeFiles/listener.dir/build.make sar_localization/CMakeFiles/listener.dir/src/listener.cpp.s
 .PHONY : src/listener.cpp.s
 
+src/log_csi_stream.o: src/log_csi_stream.cpp.o
+.PHONY : src/log_csi_stream.o
+
+# target to build an object file
+src/log_csi_stream.cpp.o:
+	cd /home/clarence/SAR_Localization/build && $(MAKE) -f sar_localization/CMakeFiles/log_csi_stream.dir/build.make sar_localization/CMakeFiles/log_csi_stream.dir/src/log_csi_stream.cpp.o
+.PHONY : src/log_csi_stream.cpp.o
+
+src/log_csi_stream.i: src/log_csi_stream.cpp.i
+.PHONY : src/log_csi_stream.i
+
+# target to preprocess a source file
+src/log_csi_stream.cpp.i:
+	cd /home/clarence/SAR_Localization/build && $(MAKE) -f sar_localization/CMakeFiles/log_csi_stream.dir/build.make sar_localization/CMakeFiles/log_csi_stream.dir/src/log_csi_stream.cpp.i
+.PHONY : src/log_csi_stream.cpp.i
+
+src/log_csi_stream.s: src/log_csi_stream.cpp.s
+.PHONY : src/log_csi_stream.s
+
+# target to generate assembly for a file
+src/log_csi_stream.cpp.s:
+	cd /home/clarence/SAR_Localization/build && $(MAKE) -f sar_localization/CMakeFiles/log_csi_stream.dir/build.make sar_localization/CMakeFiles/log_csi_stream.dir/src/log_csi_stream.cpp.s
+.PHONY : src/log_csi_stream.cpp.s
+
 src/serial_message.o: src/serial_message.cpp.o
 .PHONY : src/serial_message.o
 
@@ -458,6 +496,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... listener"
+	@echo "... log_csi_stream"
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
@@ -480,6 +519,9 @@ help:
 	@echo "... src/listener.o"
 	@echo "... src/listener.i"
 	@echo "... src/listener.s"
+	@echo "... src/log_csi_stream.o"
+	@echo "... src/log_csi_stream.i"
+	@echo "... src/log_csi_stream.s"
 	@echo "... src/serial_message.o"
 	@echo "... src/serial_message.i"
 	@echo "... src/serial_message.s"

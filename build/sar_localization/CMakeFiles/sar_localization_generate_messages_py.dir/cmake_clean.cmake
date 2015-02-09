@@ -1,6 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/sar_localization_generate_messages_py"
   "/home/clarence/SAR_Localization/devel/lib/python2.7/dist-packages/sar_localization/msg/_Imu.py"
+  "/home/clarence/SAR_Localization/devel/lib/python2.7/dist-packages/sar_localization/msg/_Csi.py"
   "/home/clarence/SAR_Localization/devel/lib/python2.7/dist-packages/sar_localization/msg/__init__.py"
 )
 
