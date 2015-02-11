@@ -118,52 +118,39 @@ int main(int argc, char** argv)
 		//ret = fwrite(cmsg->data, 1, l, out);
 		char *pt = (char*) cmsg->data;
 		unsigned char data_code = (unsigned char) *pt;
-		//++pt;
+		++pt;
 		//printf("Data code is: %d\n", (unsigned short) data_code);	
 		if(data_code == 187)	//Get beamforming
 		{
 			//printf("Enter data decode\n");
-			unsigned long timestamp_low = pt[1] + (pt[2]<<8) + (pt[3]<<16) + (pt[4]<<24);
-			unsigned short bfee_count = pt[5] + (pt[6]<<8);
-			//printf("bfee_count = %d\n", bfee_count);
-			unsigned int Nrx = pt[9];
-			//printf("Nrx = %d\n", Nrx);
-			unsigned int Ntx = pt[10];
-			//printf("Ntx = %d\n", Ntx);
-			unsigned int rssi_a = pt[11];
-			unsigned int rssi_b = pt[12];
-			unsigned int rssi_c = pt[13];
-			//printf("rssi_a,b,c = %d, %d, %d\n", rssi_a, rssi_b, rssi_c);
-			char noise = pt[14];
-			unsigned int agc = pt[15];
-			unsigned int antenna_sel = pt[16];
-			unsigned int len = pt[17] + (pt[18]<<8);
-			//if(len > 400)
-			//{
-			//	printf("pt[17] is %d, pt[18] is %d\n", pt[17], pt[18]);
-			//}
-			//printf("len is %u, ", len);
-			unsigned int fake_rate_n_flags = pt[19] + (pt[20]<<8);
+			++count;
+			unsigned long timestamp_low = pt[0] + (pt[1]<<8) + (pt[2]<<16) + (pt[3]<<24);
+			unsigned short bfee_count = pt[4] + (pt[5]<<8);
+			unsigned int Nrx = pt[8];
+			unsigned int Ntx = pt[9];
+			unsigned int rssi_a = pt[10];
+			unsigned int rssi_b = pt[11];
+			unsigned int rssi_c = pt[12];
+			char noise = pt[13];
+			unsigned int agc = pt[14];
+			unsigned int antenna_sel = pt[15];
+			unsigned int len = pt[16] + (pt[17]<<8);
+			unsigned int fake_rate_n_flags = pt[18] + (pt[19]<<8);
 			unsigned int calc_len = (30 * (Nrx * Ntx * 8 * 2 + 3) + 7)/8;
-			//printf("calc_len is %d\n", calc_len);
 			unsigned int i, j, k;
 			unsigned int index = 0, remainder;
-			unsigned char *payload = (unsigned char*) &pt[21];
+			unsigned char *payload = (unsigned char*) &pt[20];
 			char tmp;
 			int size[] = {Ntx, Nrx, 30};
 			//Eigen::Matrix<std::vector<complex<double> >, Ntx, Nrx> csi_entry;
 			//Note!!! Here we only log one transmitter's csi_entry, i.e., the first transmitter	
 			Eigen::MatrixXcd csi_entry(Nrx, 30);
 			//Check that length matches what it should
-			bool check_csi = false;
 			if(len != calc_len)
 			{
-					
-				//printf("len = %d, calc_len = %d\n", (unsigned int) len, calc_len);
-				//perror("Wrong beamforming matrix size");
-				//exit(0);	
-				//continue;
-				check_csi = true;
+				printf("len = %d, calc_len = %d\n", (unsigned int) len, calc_len);
+				perror("Wrong beamforming matrix size");
+				exit(0);	
 			}
 			
 			for(i = 0; i < 30; ++i)
@@ -240,22 +227,17 @@ int main(int argc, char** argv)
 			sar_localization::Csi msg;
 			msg.header.stamp = ros::Time::now();
 			/*!!!We only publish the first subcarrier's CSI other than the whole 30 subcarriers'!!!*/
-			//if(check_csi || 1)
-				//printf("csi(0,0).real is %lf, csi(0,0).imag is %lf\n", csi(0,0).real(), csi(0,0).imag() );
-
 			msg.csi1_real = csi(0,0).real();
 			msg.csi1_image = csi(0,0).imag();
 
 			msg.csi2_real = csi(1,0).real();
 			msg.csi2_image = csi(1,0).imag();
 			csi_pub.publish(msg);
-			++count;
-			 if (count % 100 == 0)
-				 printf("receive %d bytes [msgcnt=%u]\n", ret, count);
 		}	//End of if(code)
 		ros::spinOnce();
 		//printf("Exit decoder\n");
-		
+		if (count % 100 == 0)
+			printf("receive %d bytes [msgcnt=%u]\n", ret, count);
 		//++count;
 		//printf("ret = %d, l = %d\n", ret, l);
 		//if (ret != l)

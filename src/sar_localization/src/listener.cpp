@@ -17,9 +17,9 @@ using namespace std;
 vector<complex> CSI1;		//CSI from antenna 1
 vector<complex> CSI2;		//CSI from antenna 2
 vector<pair<double, double> > orientation;	//pitch, yaw
-double t_stamp_csi;			//time stamp of csi
-double t_stamp_imu;			//time stamp of imu
-int size = 100;					//data processing size
+double t_stamp_csi;		//time stamp of csi
+double t_stamp_imu;		//time stamp of imu
+int size = 100;			//data processing size
 
 
 // %Tag(CALLBACK)%
